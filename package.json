@@ -1,12 +1,23 @@
 {
   "name": "atriar",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "dist/middleware/logger.js",
+  "types": "dist/types/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "dev": "nodemon --watch src --ext ts --exec \"ts-node src/index.ts\""
   },
   "keywords": [],
   "author": "ncagabriel",
   "license": "MIT",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongodb": "^6.20.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.9.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
 }
