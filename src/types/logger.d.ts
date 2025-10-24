@@ -13,7 +13,7 @@ interface LogEntry {
 }
 
 interface LoggerOptions {
-  db?: string;
-  client?: import("mongodb").MongoClient;
-  databaseName?: string;
+  provider: "mongodb" | "postgres";
+  url?: string; // connection URL
+  client?: import("mongodb").MongoClient; // optional, pre-initialized client
 }

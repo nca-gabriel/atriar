@@ -2,7 +2,7 @@ import express from "express";
 import { logger } from "./middleware/logger";
 
 const app = express();
-app.use(logger({ db: "mongodb://localhost/test11" })); // replace with real URI
+app.use(logger({ provider: "mongodb", url: "mongodb://localhost/atriar" }));
 
 app.get("/", (req, res) => {
   res.send("Logger test route hit");
