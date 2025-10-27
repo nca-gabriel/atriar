@@ -39,5 +39,9 @@ function mongoHandler(options) {
             await ready;
             await collection.insertOne(log);
         },
+        async getLogs(limit = 100) {
+            await ready;
+            return collection.find().sort({ timestamp: -1 }).limit(limit).toArray();
+        },
     };
 }

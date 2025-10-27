@@ -54,5 +54,10 @@ function postgresHandler(options) {
             ];
             await client.query(query, values);
         },
+        async getLogs(limit = 100) {
+            await ready;
+            const result = await client.query(`SELECT * FROM api_logs ORDER BY timestamp DESC LIMIT $1;`, [limit]);
+            return result.rows;
+        },
     };
 }

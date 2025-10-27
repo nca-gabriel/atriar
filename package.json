@@ -3,8 +3,11 @@
   "version": "0.0.1",
   "main": "dist/middleware/logger.js",
   "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npx cpy \"src/page/**/*\" dist/page",
     "dev": "nodemon --watch src --ext ts --exec \"ts-node src/index.ts\""
   },
   "keywords": [],
@@ -18,6 +21,7 @@
   },
   "devDependencies": {
     "@types/node": "^24.9.1",
+    "cpy-cli": "^6.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   }
