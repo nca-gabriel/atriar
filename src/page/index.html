@@ -5,22 +5,31 @@
     <title>Atriar Dashboard</title>
   </head>
   <body>
-    <h2>Atriar Logs</h2>
+    <h2>Atriar Traffic Overview</h2>
+    <section class="overview">
+      <div class="metrics">
+        <article class="metric">box1</article>
+        <article class="metric">box2</article>
+        <article class="metric">box3</article>
+      </div>
 
-    <canvas id="requestsChart" width="400" height="200"></canvas>
+      <div class="charts">
+        <figure class="chart">Requests Over Time</figure>
+      </div>
+    </section>
 
-    <table border="1" id="logsTable">
-      <thead>
-        <tr>
-          <th>Method</th>
-          <th>Path</th>
-          <th>Status</th>
-          <th>Duration</th>
-          <th>Timestamp</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <section class="performance">
+      <figure class="chart">Status Distribution</figure>
+      <figure class="chart">Traffic Endpoints</figure>
+      <figure class="chart">Error Rate by Endpoint</figure>
+      <figure class="chart">Most Hit Endpoints</figure>
+    </section>
+
+    <section class="logs">
+      <!-- table will go here -->
+    </section>
+
+    <section class="logs"></section>
 
     <!-- Chart.js CDN for simplicity -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
