@@ -18,3 +18,54 @@ A drop-in middleware that **logs all API requests** and **displays them in a bui
 ---
 
 ## **📦 Installation**
+```bash
+npm install atriar
+# or
+yarn add atriar
+```
+
+## **⚙️ Usage**
+```typescript
+import express from "express";
+import { atriar } from "atriar";
+
+const app = express();
+
+// Add Atriar middleware before your routes (url can be client or mongoatlas link)
+app.use(atriar({ provider: "mongodb", url: "mongodb://localhost/atriar" }));
+
+// Example routes
+app.get("/api/hello", (req, res) => {
+  res.send("Hello World!");
+});
+
+app.listen(3000, () => {
+  console.log("Server running at http://localhost:3000");
+});
+```
+Once started, open your browser at http://localhost:3000/atriar
+ to view the dashboard.
+
+## **🧱 Tech Stack**
+TypeScript
+
+Express Middleware
+
+Chart.js
+
+Vite (Dashboard UI)
+
+Node.js / npm
+
+## **🧪 Development**
+```bash
+git clone https://github.com/yourusername/atriar.git
+cd atriar
+npm install
+npm run dev
+```
+
+
+
+
+ 
