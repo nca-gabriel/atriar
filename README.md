@@ -1,10 +1,6 @@
----
 # **Atriar Request Logger and Dashboard**
 
-A drop-in middleware that **logs all API requests** and **displays them in a built-in visual dashboard**. Zero configuration required.
----
-
-## **✨ Features**
+# **Features**
 
 - **Automatic request logging**: method, path, status, duration, timestamp, IP, user agent, size, error
 - **Real-time dashboard** served locally
@@ -17,14 +13,14 @@ A drop-in middleware that **logs all API requests** and **displays them in a bui
 
 ---
 
-## **📦 Installation**
+## **Installation**
 ```bash
 npm install atriar
 # or
 yarn add atriar
 ```
 
-## **⚙️ Usage**
+## **Usage**
 ```typescript
 import express from "express";
 import { atriar } from "atriar";
@@ -46,24 +42,30 @@ app.listen(3000, () => {
 Once started, open your browser at http://localhost:3000/atriar
  to view the dashboard.
 
-## **🧱 Tech Stack**
+## **Tech Stack**
 TypeScript
 
 Express Middleware
 
 Chart.js
 
-Vite (Dashboard UI)
-
 Node.js / npm
 
-## **🧪 Development**
+## **Development**
 ```bash
 git clone https://github.com/yourusername/atriar.git
 cd atriar
 npm install
 npm run dev
 ```
+
+
+
+## **Links**
+- **npm:** [https://www.npmjs.com/package/atriar](https://www.npmjs.com/package/atriar)  
+- **GitHub:** [https://github.com/yourusername/atriar](https://github.com/nca-gabriel/atriar)
+
+
 
 
 
