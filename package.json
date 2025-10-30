@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "main": "dist/middleware/logger.js",
   "types": "dist/types/index.d.ts",
+  {
+  "license": "MIT"
+},
   "files": [
     "dist"
   ],
