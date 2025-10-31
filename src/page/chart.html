@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Insight Dashboard - KPI View</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <header class="dashboard-header">
+      <h1><span class="accent-color">API</span> Insight Traffic Overview</h1>
+    </header>
+
+    <div class="kpi-grid">
+      <div class="kpi-box">
+        <div class="kpi-content">
+          <div class="kpi-value" id="uptime-value">99.8%</div>
+          <div class="kpi-label">Uptime</div>
+        </div>
+        <div class="sparkline-container">
+          <canvas id="uptimeSparkline"></canvas>
+        </div>
+      </div>
+
+      <div class="kpi-box">
+        <div class="kpi-content">
+          <div class="kpi-value" id="avg-latency">150ms</div>
+          <div class="kpi-label">Average Latency</div>
+        </div>
+        <div class="sparkline-container">
+          <canvas id="latencySparkline"></canvas>
+        </div>
+      </div>
+
+      <div class="kpi-box">
+        <div class="kpi-content">
+          <div class="kpi-value" id="error-rate">0.2%</div>
+          <div class="kpi-label">Error Rate</div>
+        </div>
+        <div class="sparkline-container">
+          <canvas id="errorRateSparkline"></canvas>
+        </div>
+      </div>
+
+      <div class="kpi-box">
+        <div class="kpi-content">
+          <div class="kpi-value" id="total-bandwidth">5.2 GB</div>
+          <div class="kpi-label">Total Bandwidth</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

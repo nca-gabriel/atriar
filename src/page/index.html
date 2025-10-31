@@ -6,33 +6,70 @@
   </head>
   <body>
     <h2>Atriar Traffic Overview</h2>
+
+    <!-- ================= OVERVIEW SECTION ================= -->
     <section class="overview">
       <div class="metrics">
-        <article class="metric">box1</article>
-        <article class="metric">box2</article>
-        <article class="metric">box3</article>
+        <!-- Total number of requests -->
+        <article class="metric">Total Requests</article>
+
+        <!-- Average response time (ms) -->
+        <article class="metric">Average Response Time</article>
+
+        <!-- Error rate (%) -->
+        <article class="metric">Error Rate</article>
       </div>
 
       <div class="charts">
+        <!-- Line chart: requests count over time (based on timestamp) -->
         <figure class="chart">Requests Over Time</figure>
+
+        <!-- Pie chart: distribution of status codes (2xx, 4xx, 5xx) -->
+        <figure class="chart">Status Distribution</figure>
       </div>
     </section>
 
+    <!-- ================= PERFORMANCE SECTION ================= -->
     <section class="performance">
-      <figure class="chart">Status Distribution</figure>
-      <figure class="chart">Traffic Endpoints</figure>
+      <!-- Bar chart: endpoints with highest average duration -->
+      <figure class="chart">Slowest Endpoints</figure>
+
+      <!-- Bar chart: endpoints with highest error rate -->
       <figure class="chart">Error Rate by Endpoint</figure>
+
+      <!-- Bar or donut chart: endpoints with most request hits -->
       <figure class="chart">Most Hit Endpoints</figure>
     </section>
 
+    <!-- ================= LOGS SECTION ================= -->
     <section class="logs">
-      <!-- table will go here -->
+      <!-- Table showing individual request logs -->
+      <!-- Columns: Method | Path | Status | Duration | Timestamp | Error -->
+      <!-- Each row represents one log entry from stored data -->
+      <!-- Example fields:
+           method, path, status, duration, timestamp, errorMessage -->
+      <table class="log-table">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Path</th>
+            <th>Status</th>
+            <th>Duration (ms)</th>
+            <th>Timestamp</th>
+            <th>Error</th>
+          </tr>
+        </thead>
+        <tbody id="log-body">
+          <!-- Populated dynamically from stored logs -->
+        </tbody>
+      </table>
     </section>
 
-    <section class="logs"></section>
-
-    <!-- Chart.js CDN for simplicity -->
+    <!-- ================= SCRIPTS ================= -->
+    <!-- Chart.js for charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Main dashboard logic -->
     <script src="./script.js"></script>
   </body>
 </html>

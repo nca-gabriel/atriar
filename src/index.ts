@@ -1,8 +1,8 @@
 import express from "express";
-import { logger } from "./middleware/logger";
+import atriar from "./middleware/atriar";
 
 const app = express();
-app.use(logger({ provider: "mongodb", url: "mongodb://localhost/atriar" }));
+app.use(atriar({ provider: "mongodb", url: "mongodb://localhost/atriar" }));
 
 app.get("/", (req, res) => {
   res.send("Logger test route hit");

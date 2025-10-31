@@ -5,7 +5,7 @@ import { postgresHandler } from "../handlers/postgresHandler";
 import express from "express";
 import path from "path";
 
-export function logger(options: LoggerOptions) {
+export  default function atriar(options: LoggerOptions) {
   const mount = "/atriar";
 
   const handler =
