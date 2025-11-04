@@ -7,4 +7,3 @@ export function generateMockSparklineData(baseValue, fluctuation, points = 20) {
   }
   return { labels, data };
 }
-    

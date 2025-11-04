@@ -2,52 +2,67 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
     <title>Atriar Dashboard</title>
   </head>
   <body>
     <h2>Atriar Traffic Overview</h2>
 
-    <!-- ================= OVERVIEW SECTION ================= -->
-    <section class="overview">
-      <div class="metrics">
-        <!-- Total number of requests -->
-        <article class="metric">Total Requests</article>
+    <!-- ================= FIRST ROW ================= -->
+    <section class="kpi-container">
+      <article class="kpi-box">
+        <div class="kpi-content">
+          <p id="uptime-value" class="kpi-value">99.8%</p>
+          <span class="kpi-label">Uptime</span>
+        </div>
+        <div class="sparkline-wrapper">
+          <canvas id="uptimeSparkline" class="sparkline"></canvas>
+        </div>
+      </article>
 
-        <!-- Average response time (ms) -->
-        <article class="metric">Average Response Time</article>
+      <article class="kpi-box">
+        <div class="kpi-content">
+          <p id="uptime-value" class="kpi-value">150ms</p>
+          <span class="kpi-label">Average Latency</span>
+        </div>
+        <div class="sparkline-wrapper">
+          <canvas id="latencySparkline" class="sparkline"></canvas>
+        </div>
+      </article>
 
-        <!-- Error rate (%) -->
-        <article class="metric">Error Rate</article>
-      </div>
-
-      <div class="charts">
-        <!-- Line chart: requests count over time (based on timestamp) -->
-        <figure class="chart">Requests Over Time</figure>
-
-        <!-- Pie chart: distribution of status codes (2xx, 4xx, 5xx) -->
-        <figure class="chart">Status Distribution</figure>
-      </div>
+      <article class="kpi-box">
+        <div class="kpi-content">
+          <p id="uptime-value" class="kpi-value">0.2%</p>
+          <span class="kpi-label">Error Rate</span>
+        </div>
+        <div class="sparkline-wrapper">
+          <canvas id="errorSparkline" class="sparkline"></canvas>
+        </div>
+      </article>
     </section>
 
-    <!-- ================= PERFORMANCE SECTION ================= -->
-    <section class="performance">
-      <!-- Bar chart: endpoints with highest average duration -->
+    <!-- <div class="charts">
+
+      <figure class="chart">Requests Over Time</figure>
+
+
+      <figure class="chart">Status Distribution</figure>
+    </div> -->
+
+    <!-- <section class="performance">
+
       <figure class="chart">Slowest Endpoints</figure>
 
-      <!-- Bar chart: endpoints with highest error rate -->
+
       <figure class="chart">Error Rate by Endpoint</figure>
 
-      <!-- Bar or donut chart: endpoints with most request hits -->
-      <figure class="chart">Most Hit Endpoints</figure>
-    </section>
 
-    <!-- ================= LOGS SECTION ================= -->
+      <figure class="chart">Most Hit Endpoints</figure>
+    </section> -->
+    <!-- 
     <section class="logs">
-      <!-- Table showing individual request logs -->
-      <!-- Columns: Method | Path | Status | Duration | Timestamp | Error -->
-      <!-- Each row represents one log entry from stored data -->
-      <!-- Example fields:
-           method, path, status, duration, timestamp, errorMessage -->
       <table class="log-table">
         <thead>
           <tr>
@@ -59,17 +74,10 @@
             <th>Error</th>
           </tr>
         </thead>
-        <tbody id="log-body">
-          <!-- Populated dynamically from stored logs -->
-        </tbody>
+        <tbody id="log-body"></tbody>
       </table>
-    </section>
+    </section> -->
 
-    <!-- ================= SCRIPTS ================= -->
-    <!-- Chart.js for charts -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- Main dashboard logic -->
-    <script src="./script.js"></script>
+    <script type="module" src="./index.js"></script>
   </body>
 </html>

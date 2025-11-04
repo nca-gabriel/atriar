@@ -1,205 +1,41 @@
-/* --- Global Styles & Dark Theme --- */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-    background-color: #0d0d0d; /* Very dark background */
-    color: #f0f0f0; /* Light text color */
-    margin: 0;
-    padding: 30px;
+  --bg: #ffffff;
+  --text: #000000;
+  --box-bg: #ffffff;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
-.dashboard-header {
-    text-align: left;
-    margin-bottom: 20px;
-    padding: 10px 0;
-    font-size: 1.2em;
-    font-weight: 300;
-    border-bottom: 1px solid #1a1a1a;
+body[data-theme="dark"] {
+  --bg: #000000;
+  --text: #f0f0f0;
+  --box-bg: #171313;
 }
 
-.dashboard-header h1 {
-    font-size: 1.8em;
-    font-weight: 500;
-    margin: 0;
-    color: #e0e0e0;
-}
-
-.accent-color {
-    color: #03dac6; /* Teal/Cyan accent */
-}
-
-/* --- Row 1: KPI Grid Layout --- */
-.kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 20px; 
-    margin-bottom: 40px;
+.kpi-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+  border: 2px red dashed;
 }
 
 .kpi-box {
-    background-color: #1a1a1a;
-    padding: 15px 20px;
-    border-radius: 6px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; 
-    min-height: 120px;
-    position: relative;
-    overflow: hidden; 
+  background-color: var(--box-bg);
+  flex: 1 1 0;
+  height: 140px;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* separate text and graph */
+  border-radius: 5%;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  /* padding: 1rem; */
 }
 
-.kpi-content {
-    text-align: left;
-    margin-bottom: 10px;
+.sparkline-wrapper {
+  width: 100%;
+  flex-shrink: 0;
+  height: 60px; /* slightly larger for visibility */
 }
-
-.kpi-value {
-    font-size: 2.5em;
-    font-weight: bold;
-    color: #ffffff;
-    margin: 0;
-    line-height: 1.1;
-}
-
-.kpi-label {
-    font-size: 0.85em;
-    color: #a0a0a0;
-    margin-top: 2px;
-    text-transform: capitalize;
-    font-weight: 400;
-}
-
-.sparkline-container {
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 60px;
-    /* This ensures the chart is positioned above the bottom edge */
-    padding: 0 5px 5px 5px; 
-    box-sizing: border-box;
-}
-
-/* Individual KPI Colors for the value text */
-#uptime-value { color: #6ee67b; } 
-#avg-latency { color: #ffaa33; }
-#error-rate { color: #ff6e6e; }
-#total-bandwidth { color: #b0b0b0; }
-
-
-/* --- Row 2: Charts Layout --- */
-.chart-grid {
-    /* Main chart (2fr) and Right column (1fr) */
-    display: grid;
-    grid-template-columns: 2fr 1fr; 
-    gap: 20px;
-    margin-bottom: 40px; 
-}
-
-.chart-container {
-    background-color: #1a1a1a;
-    padding: 20px;
-    border-radius: 6px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-}
-
-.chart-container h3 {
-    margin-top: 0;
-    color: #e0e0e0;
-    font-weight: 500;
-    font-size: 1.2em;
-}
-
-/* Wide container for the main multi-line chart */
-.chart-container.wide {
-    height: 400px;
-}
-
-/* Container for the two stacked smaller charts */
-.right-column-charts {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-/* Small charts take half the space */
-.chart-container.small {
-    height: 190px;
-    display: flex; /* Flex is needed to make the chart inside respect height */
-    flex-direction: column;
-}
-
-
-/* --- Row 3: Log Table Styles --- */
-.recent-requests-container {
-    background-color: #1a1a1a;
-    padding: 20px;
-    border-radius: 6px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-}
-
-.recent-requests-container h3 {
-    margin-top: 0;
-    margin-bottom: 15px;
-    color: #e0e0e0;
-    font-weight: 500;
-    font-size: 1.2em;
-}
-
-.log-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9em;
-}
-
-.log-table th {
-    text-align: left;
-    color: #a0a0a0;
-    padding: 12px 10px;
-    border-bottom: 2px solid #2a2a2a;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-.log-table td {
-    padding: 10px;
-    border-bottom: 1px solid #2a2a2a;
-    color: #e0e0e0;
-}
-
-.log-table tbody tr:hover {
-    background-color: #2a2a2a; 
-}
-
-/* --- Badge Styling --- */
-
-/* Base badge style */
-.status-badge, .method-badge {
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-weight: bold;
-    font-size: 0.8em;
-    display: inline-block;
-    text-align: center;
-}
-
-/* Status Color Coding (subtle background, bright text) */
-.status-200 { background-color: #6ee67b20; color: #6ee67b; } /* Green - Success */
-.status-201 { background-color: #6ee67b20; color: #6ee67b; }
-.status-400 { background-color: #ffaa3320; color: #ffaa33; } /* Orange - Client Error */
-.status-401 { background-color: #ffaa3320; color: #ffaa33; }
-.status-404 { background-color: #ffaa3320; color: #ffaa33; }
-.status-500 { background-color: #ff6e6e20; color: #ff6e6e; } /* Red - Server Error */
-.status-503 { background-color: #ff6e6e20; color: #ff6e6e; } 
-
-
-/* Method Coloring (solid background, light text) */
-.method-badge {
-    font-weight: 500;
-    text-transform: uppercase;
-    color: #1a1a1a; /* Dark text on colored background */
-}
-.method-GET { background-color: #42a5f5; } /* Blue */
-.method-POST { background-color: #6ee67b; } /* Green */
-.method-PUT { background-color: #ffaa33; } /* Orange */
-.method-DELETE { background-color: #ff6e6e; } /* Red */
