@@ -10,7 +10,6 @@
   <body>
     <h2>Atriar Traffic Overview</h2>
 
-    <!-- ================= FIRST ROW ================= -->
     <section class="kpi-container">
       <article class="kpi-box">
         <div class="kpi-content">
@@ -43,40 +42,30 @@
       </article>
     </section>
 
-    <!-- <div class="charts">
+    <section class="chart-container">
+      <article class="chart-content">
+        <h3>Requests Per Minute</h3>
+        <div class="chart-wrapper">
+          <canvas id="requestsPerMinuteChart"></canvas>
+        </div>
+      </article>
 
-      <figure class="chart">Requests Over Time</figure>
+      <div class="chart-group">
+        <article class="right-content">
+          <h3>Top Error Statuses</h3>
+          <div class="chart-wrapper">
+            <canvas id="errorStatusesChart"></canvas>
+          </div>
+        </article>
 
-
-      <figure class="chart">Status Distribution</figure>
-    </div> -->
-
-    <!-- <section class="performance">
-
-      <figure class="chart">Slowest Endpoints</figure>
-
-
-      <figure class="chart">Error Rate by Endpoint</figure>
-
-
-      <figure class="chart">Most Hit Endpoints</figure>
-    </section> -->
-    <!-- 
-    <section class="logs">
-      <table class="log-table">
-        <thead>
-          <tr>
-            <th>Method</th>
-            <th>Path</th>
-            <th>Status</th>
-            <th>Duration (ms)</th>
-            <th>Timestamp</th>
-            <th>Error</th>
-          </tr>
-        </thead>
-        <tbody id="log-body"></tbody>
-      </table>
-    </section> -->
+        <article class="right-content">
+          <h3>Most Frequent Endpoints</h3>
+          <div class="chart-wrapper">
+            <canvas id="frequentEndpointsChart"></canvas>
+          </div>
+        </article>
+      </div>
+    </section>
 
     <script type="module" src="./index.js"></script>
   </body>

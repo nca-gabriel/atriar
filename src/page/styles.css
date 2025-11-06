@@ -17,7 +17,7 @@ body[data-theme="dark"] {
   flex-wrap: wrap;
   gap: 1rem;
   width: 100%;
-  border: 2px red dashed;
+  /* margin-bottom: 1rem; */
 }
 
 .kpi-box {
@@ -38,4 +38,39 @@ body[data-theme="dark"] {
   width: 100%;
   flex-shrink: 0;
   height: 60px; /* slightly larger for visibility */
+}
+
+.chart-wrapper {
+  height: 85%;
+  width: 95%;
+}
+
+.chart-container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 30rem;
+  gap: 1rem;
+}
+
+.chart-content {
+  flex: 1 1 0;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+}
+
+.chart-group {
+  height: 100%;
+  flex: 0.6 1 0;
+}
+
+.right-content {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .chart-group {
+    flex: 1 1 100%; /* take full width when stacked */
+  }
 }
