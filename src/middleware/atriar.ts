@@ -5,7 +5,7 @@ import { postgresHandler } from "../handlers/postgresHandler";
 import express from "express";
 import path from "path";
 
-export  default function atriar(options: LoggerOptions) {
+export default function atriar(options: LoggerOptions) {
   const mount = "/atriar";
 
   const handler =
@@ -17,6 +17,13 @@ export  default function atriar(options: LoggerOptions) {
 
   // 1) Logger middleware
   router.use(async (req: Request, res: Response, next: NextFunction) => {
+    if (
+      req.path.startsWith(`${mount}/`) || // your own dashboard & API routes
+      /\.(js|css|html|png|jpg|jpeg|gif|svg|ico|json)$/.test(req.path) // static assets
+    ) {
+      return next();
+    }
+
     const start = performance.now();
 
     res.on("finish", async () => {

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="./assets/styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
     <title>Atriar Dashboard</title>
   </head>
@@ -23,7 +23,7 @@
 
       <article class="kpi-box">
         <div class="kpi-content">
-          <p id="uptime-value" class="kpi-value">150ms</p>
+          <p id="latency-value" class="kpi-value">150ms</p>
           <span class="kpi-label">Average Latency</span>
         </div>
         <div class="sparkline-wrapper">
@@ -33,7 +33,7 @@
 
       <article class="kpi-box">
         <div class="kpi-content">
-          <p id="uptime-value" class="kpi-value">0.2%</p>
+          <p id="error-value" class="kpi-value">0.2%</p>
           <span class="kpi-label">Error Rate</span>
         </div>
         <div class="sparkline-wrapper">
@@ -67,6 +67,7 @@
       </div>
     </section>
 
-    <script type="module" src="./index.js"></script>
+    <!-- <script type="module" src="./index.js"></script> -->
+    <script type="module" src="./assets/script.js"></script>
   </body>
 </html>
