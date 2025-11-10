@@ -1,76 +1,79 @@
+html,
 body {
-  --bg: #ffffff;
-  --text: #000000;
-  --box-bg: #ffffff;
-  background-color: var(--bg);
-  color: var(--text);
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
-body[data-theme="dark"] {
-  --bg: #000000;
-  --text: #f0f0f0;
-  --box-bg: #171313;
+body {
+  display: flex;
+  flex-direction: column;
+  height: 95vh;
+  padding: 1rem;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  /* overflow: hidden; */
 }
 
 .kpi-container {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  width: 100%;
-  /* margin-bottom: 1rem; */
 }
 
 .kpi-box {
-  background-color: var(--box-bg);
   flex: 1 1 0;
-  height: 140px;
   min-width: 200px;
+  height: 140px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* separate text and graph */
-  border-radius: 5%;
-  overflow: hidden;
+  justify-content: space-between;
+  padding: 0.5rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  /* padding: 1rem; */
 }
 
-.sparkline-wrapper {
-  width: 100%;
-  flex-shrink: 0;
-  height: 60px; /* slightly larger for visibility */
-}
-
+.sparkline-wrapper,
 .chart-wrapper {
-  height: 85%;
-  width: 95%;
+  flex: 1; /* keep flex layout */
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  aspect-ratio: 3 / 1; /* width:height ratio */
+  min-height: 80px;
 }
 
 .chart-container {
   display: flex;
   flex-wrap: wrap;
-  height: 30rem;
+  justify-content: center;
+  height: 100%;
   gap: 1rem;
 }
 
-.chart-content {
+.left-content {
   flex: 1 1 0;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .chart-group {
-  height: 100%;
-  flex: 0.6 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .right-content {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  flex: 1 1 0;
+  justify-content: center;
   padding: 1rem;
-}
-
-@media (max-width: 768px) {
-  .chart-group {
-    flex: 1 1 100%; /* take full width when stacked */
-  }
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }

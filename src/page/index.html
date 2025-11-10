@@ -8,64 +8,69 @@
     <title>Atriar Dashboard</title>
   </head>
   <body>
-    <h2>Atriar Traffic Overview</h2>
+    <header class="dashboard-header">
+      <h2>Atriar Traffic Overview</h2>
+      <!-- <button id="theme-toggle">🌙</button> -->
+    </header>
 
-    <section class="kpi-container">
-      <article class="kpi-box">
-        <div class="kpi-content">
-          <p id="uptime-value" class="kpi-value">99.8%</p>
-          <span class="kpi-label">Uptime</span>
-        </div>
-        <div class="sparkline-wrapper">
-          <canvas id="uptimeSparkline" class="sparkline"></canvas>
-        </div>
-      </article>
-
-      <article class="kpi-box">
-        <div class="kpi-content">
-          <p id="latency-value" class="kpi-value">150ms</p>
-          <span class="kpi-label">Average Latency</span>
-        </div>
-        <div class="sparkline-wrapper">
-          <canvas id="latencySparkline" class="sparkline"></canvas>
-        </div>
-      </article>
-
-      <article class="kpi-box">
-        <div class="kpi-content">
-          <p id="error-value" class="kpi-value">0.2%</p>
-          <span class="kpi-label">Error Rate</span>
-        </div>
-        <div class="sparkline-wrapper">
-          <canvas id="errorSparkline" class="sparkline"></canvas>
-        </div>
-      </article>
-    </section>
-
-    <section class="chart-container">
-      <article class="chart-content">
-        <h3>Requests Per Minute</h3>
-        <div class="chart-wrapper">
-          <canvas id="requestsPerMinuteChart"></canvas>
-        </div>
-      </article>
-
-      <div class="chart-group">
-        <article class="right-content">
-          <h3>Top Error Statuses</h3>
-          <div class="chart-wrapper">
-            <canvas id="errorStatusesChart"></canvas>
+    <main>
+      <section class="kpi-container">
+        <article class="kpi-box">
+          <div class="kpi-content">
+            <p id="uptime-value" class="kpi-value">99.8%</p>
+            <span class="kpi-label">Uptime</span>
+          </div>
+          <div class="sparkline-wrapper">
+            <canvas id="uptimeSparkline" class="sparkline"></canvas>
           </div>
         </article>
 
-        <article class="right-content">
-          <h3>Most Frequent Endpoints</h3>
-          <div class="chart-wrapper">
-            <canvas id="frequentEndpointsChart"></canvas>
+        <article class="kpi-box">
+          <div class="kpi-content">
+            <p id="latency-value" class="kpi-value">150ms</p>
+            <span class="kpi-label">Average Latency</span>
+          </div>
+          <div class="sparkline-wrapper">
+            <canvas id="latencySparkline" class="sparkline"></canvas>
           </div>
         </article>
-      </div>
-    </section>
+
+        <article class="kpi-box">
+          <div class="kpi-content">
+            <p id="error-value" class="kpi-value">0.2%</p>
+            <span class="kpi-label">Error Rate</span>
+          </div>
+          <div class="sparkline-wrapper">
+            <canvas id="errorSparkline" class="sparkline"></canvas>
+          </div>
+        </article>
+      </section>
+
+      <section class="chart-container">
+        <article class="left-content">
+          <h3>Requests Per Minute</h3>
+          <div class="chart-wrapper">
+            <canvas id="requestsPerMinuteChart"></canvas>
+          </div>
+        </article>
+
+        <div class="chart-group">
+          <article class="right-content">
+            <h3>Top Error Statuses</h3>
+            <div class="chart-wrapper">
+              <canvas id="errorStatusesChart"></canvas>
+            </div>
+          </article>
+
+          <article class="right-content">
+            <h3>Most Frequent Endpoints</h3>
+            <div class="chart-wrapper">
+              <canvas id="frequentEndpointsChart"></canvas>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
 
     <!-- <script type="module" src="./index.js"></script> -->
     <script type="module" src="./assets/script.js"></script>
