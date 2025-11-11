@@ -1,10 +1,12 @@
-import { sparklineColors } from "../config/sparkLineColors.js";
+import { COLORS, FILLS, THEME } from "../config/globalColors.js";
 
 export function createSparkline(canvasId, data, type) {
   const canvas = document.getElementById(canvasId);
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
-  const { line, fill } = sparklineColors[type];
+
+  const line = COLORS[type] || COLORS.primary;
+  const fill = FILLS[type] || FILLS.primary;
 
   new Chart(ctx, {
     type: "line",
@@ -36,6 +38,9 @@ export function createRpmChart(canvasId, data) {
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
 
+  const isDark = document.body.classList.contains("dark-mode");
+  const theme = isDark ? THEME.dark : THEME.light;
+
   new Chart(ctx, {
     type: "line",
     data: {
@@ -44,42 +49,42 @@ export function createRpmChart(canvasId, data) {
         {
           label: "Total Requests",
           data: data.totalRequests,
-          borderColor: "#03dac6",
+          borderColor: COLORS.primary,
           backgroundColor: "transparent",
           tension: 0.4,
           pointRadius: 4,
           borderWidth: 2,
-          pointBackgroundColor: "#03dac6",
+          pointBackgroundColor: COLORS.primary,
         },
         {
           label: "Success (2xx)",
           data: data.successRequests,
-          borderColor: "#6ee67b",
+          borderColor: COLORS.success,
           backgroundColor: "transparent",
           tension: 0.4,
           pointRadius: 4,
           borderWidth: 2,
-          pointBackgroundColor: "#6ee67b",
+          pointBackgroundColor: COLORS.success,
         },
         {
           label: "Errors (4xx/5xx)",
           data: data.errorRequests,
-          borderColor: "#ff6e6e",
+          borderColor: COLORS.danger,
           backgroundColor: "transparent",
           tension: 0.4,
           pointRadius: 4,
           borderWidth: 2,
-          pointBackgroundColor: "#ff6e6e",
+          pointBackgroundColor: COLORS.danger,
         },
         {
           label: "Endpoint: Users",
           data: data.userEndpoint,
-          borderColor: "#c084fc",
+          borderColor: COLORS.accent,
           backgroundColor: "transparent",
           tension: 0.4,
           pointRadius: 4,
           borderWidth: 2,
-          pointBackgroundColor: "#c084fc",
+          pointBackgroundColor: COLORS.accent,
         },
       ],
     },
@@ -90,19 +95,19 @@ export function createRpmChart(canvasId, data) {
         legend: {
           display: true, // ✅ legend is explicitly enabled
           position: "bottom",
-          labels: { color: "#a0a0a0", usePointStyle: true },
+          labels: { color: theme.text, usePointStyle: true },
         },
         tooltip: { enabled: true },
       },
       scales: {
         x: {
-          ticks: { color: "#a0a0a0" },
-          grid: { display: false },
+          ticks: { color: theme.text },
+          grid: { display: theme.grid },
         },
         y: {
           beginAtZero: true,
-          ticks: { color: "#a0a0a0" },
-          grid: { color: "rgba(255,255,255,0.1)" },
+          ticks: { color: theme.text },
+          grid: { display: theme.grid },
         },
       },
     },
@@ -113,6 +118,9 @@ export function createStatusChart(canvasId, data) {
   const canvas = document.getElementById(canvasId);
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
+
+  const isDark = document.body.classList.contains("dark-mode");
+  const theme = isDark ? THEME.dark : THEME.light;
 
   new Chart(ctx, {
     type: "doughnut",
@@ -132,8 +140,13 @@ export function createStatusChart(canvasId, data) {
             data["4xx"] || 0,
             data["5xx"] || 0,
           ],
-          backgroundColor: ["#6ee67b", "#42a5f5", "#ffaa33", "#ff6e6e"],
-          borderColor: "#1a1a1a",
+          backgroundColor: [
+            COLORS.success, // 2xx
+            COLORS.primary, // 3xx
+            COLORS.warning, // 4xx
+            COLORS.danger, // 5xx
+          ],
+          borderColor: theme.border,
           borderWidth: 2,
           hoverOffset: 4,
         },
@@ -146,7 +159,7 @@ export function createStatusChart(canvasId, data) {
       plugins: {
         legend: {
           position: "right",
-          labels: { color: "#a0a0a0", boxWidth: 10, padding: 8 },
+          labels: { color: theme.text, boxWidth: 10, padding: 8 },
         },
         tooltip: { enabled: true },
       },
@@ -159,6 +172,9 @@ export function createFrequentEndpointsChart(canvasId, data) {
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
 
+  const isDark = document.body.classList.contains("dark-mode");
+  const theme = isDark ? THEME.dark : THEME.light;
+
   new Chart(ctx, {
     type: "bar",
     data: {
@@ -168,13 +184,13 @@ export function createFrequentEndpointsChart(canvasId, data) {
           label: "Requests Count",
           data: data.data,
           backgroundColor: [
-            "#03dac6",
-            "#42a5f5",
-            "#c084fc",
-            "#6ee67b",
-            "#ff6e6e",
+            COLORS.primary,
+            COLORS.accent,
+            COLORS.success,
+            COLORS.warning,
+            COLORS.danger,
           ],
-          borderColor: "#1a1a1a",
+          borderColor: theme.border,
           borderWidth: 1,
         },
       ],
@@ -189,12 +205,12 @@ export function createFrequentEndpointsChart(canvasId, data) {
       },
       scales: {
         x: {
-          grid: { color: "rgba(255, 255, 255, 0.1)" },
-          ticks: { color: "#a0a0a0", display: true },
+          grid: { color: theme.grid },
+          ticks: { color: theme.text, display: true },
         },
         y: {
           grid: { display: false },
-          ticks: { color: "#a0a0a0" },
+          ticks: { color: theme.text },
         },
       },
     },

@@ -1,15 +1,105 @@
+/* variables */
+:root {
+  --bg: #ffffffd9;
+  --text: #111111;
+  --shadow: rgba(0, 0, 0, 0.167);
+  --chart: #ffffff;
+}
+
+body.dark-mode {
+  --bg: #0d0d0d;
+  --text: #f0ecec;
+  --shadow: rgba(0, 0, 0, 0.5);
+  --chart: #232222;
+}
+
+h3 {
+  margin: 0;
+}
+
 html,
 body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  /* font-size: 16px; */
   margin: 0;
   padding: 0;
   height: 100%;
+}
+
+p {
+  margin: 0;
+  padding: 0;
 }
 
 body {
   display: flex;
   flex-direction: column;
   height: 95vh;
-  padding: 1rem;
+  padding: 0.5rem;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.left-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.app-name {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.logo-container {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden; /* hide extra space around image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* keep logo aspect ratio */
+  transform: scale(1.5); /* zoom in */
+  transform-origin: center; /* zoom from center */
+}
+
+.toggle {
+  height: 30px;
+  width: 30px;
+  border: none;
+  border-radius: 5%;
+  cursor: pointer;
+  background-color: var(--chart);
+  border-radius: 15%;
+  color: var(--text, #374151);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+.toggle:hover {
+  background-color: var(--accent, #8b5cf6);
+  color: #fff;
 }
 
 main {
@@ -30,12 +120,21 @@ main {
 .kpi-box {
   flex: 1 1 0;
   min-width: 200px;
-  height: 140px;
+  height: 155px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 0.5rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px var(--shadow);
+  background-color: var(--chart);
+  border-radius: 2.5%;
+}
+
+.kpi-value {
+  font-size: 2.5em;
+  font-weight: bold;
+
+  margin: 0;
 }
 
 .sparkline-wrapper,
@@ -43,9 +142,14 @@ main {
   flex: 1; /* keep flex layout */
   display: flex;
   align-items: center;
-  /* justify-content: center; */
-  aspect-ratio: 3 / 1; /* width:height ratio */
+  justify-content: center;
+  /* height: 0; */
+  aspect-ratio: 3 / 1;
   min-height: 80px;
+}
+
+.sparkline-wrapper {
+  height: 100%;
 }
 
 .chart-container {
@@ -60,9 +164,12 @@ main {
   flex: 1 1 0;
   min-width: 200px;
   display: flex;
+  gap: 0.5rem;
   flex-direction: column;
   padding: 0.5rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px var(--shadow);
+  background-color: var(--chart);
+  border-radius: 1%;
 }
 
 .chart-group {
@@ -73,7 +180,12 @@ main {
 
 .right-content {
   flex: 1 1 0;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  /* border: 2px dashed red; */
   padding: 1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px var(--shadow);
+  background-color: var(--chart);
+  border-radius: 2%;
 }

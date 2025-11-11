@@ -74,12 +74,11 @@ body {
   bottom: 0;
   left: 0;
   height: 60px;
-  /* This ensures the chart is positioned above the bottom edge */
   padding: 0 5px 5px 5px;
   box-sizing: border-box;
 }
 
-/* Individual KPI Colors for the value text */
+/* Individual KPI Colors */
 #uptime-value {
   color: #6ee67b;
 }
@@ -95,7 +94,6 @@ body {
 
 /* --- Row 2: Charts Layout --- */
 .chart-grid {
-  /* Main chart (2fr) and Right column (1fr) */
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 20px;
@@ -116,22 +114,17 @@ body {
   font-size: 1.2em;
 }
 
-/* Wide container for the main multi-line chart */
 .chart-container.wide {
   height: 400px;
 }
-
-/* Container for the two stacked smaller charts */
 .right-column-charts {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-
-/* Small charts take half the space */
 .chart-container.small {
   height: 190px;
-  display: flex; /* Flex is needed to make the chart inside respect height */
+  display: flex;
   flex-direction: column;
 }
 
@@ -177,8 +170,6 @@ body {
 }
 
 /* --- Badge Styling --- */
-
-/* Base badge style */
 .status-badge,
 .method-badge {
   padding: 3px 8px;
@@ -189,76 +180,125 @@ body {
   text-align: center;
 }
 
-/* Status Color Coding (subtle background, bright text) */
-.status-200 {
-  background-color: #6ee67b20;
-  color: #6ee67b;
-} /* Green - Success */
+.status-200,
 .status-201 {
   background-color: #6ee67b20;
   color: #6ee67b;
 }
-.status-400 {
-  background-color: #ffaa3320;
-  color: #ffaa33;
-} /* Orange - Client Error */
-.status-401 {
-  background-color: #ffaa3320;
-  color: #ffaa33;
-}
+.status-400,
+.status-401,
 .status-404 {
   background-color: #ffaa3320;
   color: #ffaa33;
 }
-.status-500 {
-  background-color: #ff6e6e20;
-  color: #ff6e6e;
-} /* Red - Server Error */
+.status-500,
 .status-503 {
   background-color: #ff6e6e20;
   color: #ff6e6e;
 }
 
-/* Method Coloring (solid background, light text) */
 .method-badge {
   font-weight: 500;
   text-transform: uppercase;
-  color: #1a1a1a; /* Dark text on colored background */
+  color: #1a1a1a;
 }
 .method-GET {
   background-color: #42a5f5;
-} /* Blue */
+}
 .method-POST {
   background-color: #6ee67b;
-} /* Green */
+}
 .method-PUT {
   background-color: #ffaa33;
-} /* Orange */
+}
 .method-DELETE {
   background-color: #ff6e6e;
-} /* Red */
+}
 
 /* --- Media Query for Mobile/Zoomed Views --- */
 @media (max-width: 900px) {
-  /* Main chart grid collapses to a single column */
   .chart-grid {
     grid-template-columns: 1fr;
   }
-
-  /* The right column charts (small) should no longer be a separate flex container, 
-       but should merge into the main grid flow */
   .right-column-charts {
     display: block;
   }
-
-  /* Ensure small charts get full width and stack */
   .chart-container.small {
-    height: 300px; /* Give them more height in the stacked view */
-    margin-top: 20px; /* Add space between stacked charts */
+    height: 300px;
+    margin-top: 20px;
   }
-
-  /* KPI boxes also stack on very narrow views (optional, but good practice) */
   .kpi-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+/* --- Light Mode --- */
+body.light-mode {
+  background-color: #f9f9f9;
+  color: #1a1a1a;
+}
+body.light-mode .dashboard-header {
+  border-bottom: 1px solid #e0e0e0;
+}
+body.light-mode .dashboard-header h1 {
+  color: #1a1a1a;
+}
+body.light-mode .kpi-box {
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+body.light-mode .kpi-label {
+  color: #555555;
+}
+body.light-mode .chart-container {
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+body.light-mode .chart-container h3 {
+  color: #1a1a1a;
+}
+body.light-mode .recent-requests-container {
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+body.light-mode .recent-requests-container h3 {
+  color: #1a1a1a;
+}
+body.light-mode .log-table th {
+  color: #555555;
+  border-bottom: 2px solid #ddd;
+}
+body.light-mode .log-table td {
+  color: #1a1a1a;
+  border-bottom: 1px solid #eee;
+}
+body.light-mode .log-table tbody tr:hover {
+  background-color: #f0f0f0;
+}
+
+body.light-mode .status-badge.status-200,
+body.light-mode .status-badge.status-201 {
+  background-color: #6ee67b40;
+}
+body.light-mode .status-badge.status-400,
+body.light-mode .status-badge.status-401,
+body.light-mode .status-badge.status-404 {
+  background-color: #ffaa3340;
+}
+body.light-mode .status-badge.status-500,
+body.light-mode .status-badge.status-503 {
+  background-color: #ff6e6e40;
+}
+
+body.light-mode .method-GET {
+  background-color: #42a5f5cc;
+}
+body.light-mode .method-POST {
+  background-color: #6ee67bcc;
+}
+body.light-mode .method-PUT {
+  background-color: #ffaa33cc;
+}
+body.light-mode .method-DELETE {
+  background-color: #ff6e6ecc;
 }

@@ -1,20 +1,36 @@
-// --- ⚙️ Data Generation Helpers ---
+// --- Theme Toggle ---
+const themeToggleBtn = document.createElement("button");
+themeToggleBtn.textContent = "Toggle Light/Dark";
+themeToggleBtn.style.marginLeft = "20px";
+themeToggleBtn.style.padding = "5px 10px";
+document.querySelector(".dashboard-header").appendChild(themeToggleBtn);
 
-// Generates mock data for small sparkline charts
+themeToggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("light-mode");
+  if (document.body.classList.contains("light-mode")) {
+    localStorage.setItem("theme", "light");
+  } else {
+    localStorage.setItem("theme", "dark");
+  }
+});
+
+// Load saved theme
+if (localStorage.getItem("theme") === "light") {
+  document.body.classList.add("light-mode");
+}
+
+// --- ⚙️ Data Generation Helpers ---
 function generateMockSparklineData(baseValue, fluctuation, points = 20) {
   const data = [];
   const labels = [];
   for (let i = 0; i < points; i++) {
-    // Creates a value around the baseValue with random fluctuation
     data.push(baseValue + (Math.random() - 0.5) * fluctuation);
     labels.push("");
   }
   return { labels, data };
 }
 
-// Generates mock data for the Requests Per Minute multi-line chart
 function generateRpmData() {
-  // Labels representing 12 time points (e.g., 12 hours)
   const labels = [
     "12AM",
     "1AM",
@@ -29,24 +45,18 @@ function generateRpmData() {
     "10AM",
     "11AM",
   ];
-
-  // Mock data sets simulating traffic patterns
   const totalRequests = [
     1500, 1800, 2200, 2500, 2900, 3100, 3400, 3000, 2800, 2500, 2000, 1900,
   ];
-  // Success is slightly less than total
   const successRequests = totalRequests.map((r) =>
     Math.floor(r * (0.95 + Math.random() * 0.03))
   );
-  // Errors are a small fraction of the total
   const errorRequests = totalRequests.map((r) =>
     Math.floor(r * (0.05 - Math.random() * 0.02))
   );
-  // Example endpoint traffic
   const userEndpoint = [
     500, 600, 750, 850, 950, 1050, 1150, 1000, 900, 800, 650, 600,
   ];
-
   return {
     labels,
     totalRequests,
@@ -56,7 +66,6 @@ function generateRpmData() {
   };
 }
 
-// Generates mock log entries for the Recent Requests table
 function generateMockLogData(count = 15) {
   const methods = ["GET", "POST", "PUT", "DELETE"];
   const paths = [
@@ -69,15 +78,12 @@ function generateMockLogData(count = 15) {
   const statuses = [200, 201, 400, 401, 404, 500, 503];
   const ipAddresses = ["192.168.1.15", "10.0.0.22", "172.16.5.99"];
   const logs = [];
-
   for (let i = 0; i < count; i++) {
     const status = statuses[Math.floor(Math.random() * statuses.length)];
-    // Higher duration for error statuses (5xx)
     const duration =
       status >= 500
         ? (Math.random() * 500 + 150).toFixed(0)
         : (Math.random() * 100 + 50).toFixed(0);
-
     logs.push({
       timestamp: new Date(Date.now() - i * 30000).toISOString(),
       method: methods[Math.floor(Math.random() * methods.length)],
@@ -91,26 +97,16 @@ function generateMockLogData(count = 15) {
 }
 
 // --- 📈 Chart Initialization Functions ---
-
 function createSparkline(canvasId, data, color) {
   const ctx = document.getElementById(canvasId).getContext("2d");
-
-  // Define a subtle fill color for the area under the line
-  let fillColor;
-  switch (color) {
-    case "#6ee67b":
-      fillColor = "rgba(110, 230, 123, 0.15)";
-      break; // Uptime/Success (Green)
-    case "#ffaa33":
-      fillColor = "rgba(255, 170, 51, 0.15)";
-      break; // Latency/Warning (Orange)
-    case "#ff6e6e":
-      fillColor = "rgba(255, 110, 110, 0.15)";
-      break; // Error (Red)
-    default:
-      fillColor = "rgba(255, 255, 255, 0.1)";
-  }
-
+  let fillColor =
+    color === "6ee67b"
+      ? "rgba(110,230,123,0.15)"
+      : color === "#ffaa33"
+      ? "rgba(255,170,51,0.15)"
+      : color === "#ff6e6e"
+      ? "rgba(255,110,110,0.15)"
+      : "rgba(255,255,255,0.1)";
   new Chart(ctx, {
     type: "line",
     data: {
@@ -120,9 +116,9 @@ function createSparkline(canvasId, data, color) {
           data: data.data,
           borderColor: color,
           backgroundColor: fillColor,
-          tension: 0.4, // Smooth curves
+          tension: 0.4,
           fill: true,
-          pointRadius: 0, // No dots on the line
+          pointRadius: 0,
           borderWidth: 1,
         },
       ],
@@ -130,20 +126,13 @@ function createSparkline(canvasId, data, color) {
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: { enabled: false }, // Disable tooltips for sparklines
-      },
-      scales: {
-        y: { display: false },
-        x: { display: false },
-      },
+      plugins: { legend: { display: false }, tooltip: { enabled: false } },
+      scales: { y: { display: false }, x: { display: false } },
       layout: { padding: 0 },
     },
   });
 }
 
-// Multi-line chart for Requests Per Minute
 function initRequestsPerMinuteChart() {
   const {
     labels,
@@ -155,11 +144,10 @@ function initRequestsPerMinuteChart() {
   const ctx = document
     .getElementById("requestsPerMinuteChart")
     .getContext("2d");
-
   new Chart(ctx, {
     type: "line",
     data: {
-      labels: labels,
+      labels,
       datasets: [
         {
           label: "Total Requests",
@@ -210,10 +198,7 @@ function initRequestsPerMinuteChart() {
         legend: {
           display: true,
           position: "top",
-          labels: {
-            color: "#a0a0a0",
-            usePointStyle: true,
-          },
+          labels: { color: "#a0a0a0", usePointStyle: true },
         },
         title: { display: false },
       },
@@ -234,10 +219,8 @@ function initRequestsPerMinuteChart() {
   });
 }
 
-// Doughnut Chart for Error Statuses
 function initErrorStatusesChart() {
   const ctx = document.getElementById("errorStatusesChart").getContext("2d");
-
   new Chart(ctx, {
     type: "doughnut",
     data: {
@@ -251,12 +234,7 @@ function initErrorStatusesChart() {
         {
           label: "Request Status Distribution",
           data: [8500, 500, 750, 250],
-          backgroundColor: [
-            "#6ee67b", // Green for 2xx
-            "#42a5f5", // Blue for 3xx
-            "#ffaa33", // Orange for 4xx
-            "#ff6e6e", // Red for 5xx
-          ],
+          backgroundColor: ["#6ee67b", "#42a5f5", "#ffaa33", "#ff6e6e"],
           borderColor: "#1a1a1a",
           borderWidth: 2,
           hoverOffset: 4,
@@ -270,11 +248,7 @@ function initErrorStatusesChart() {
       plugins: {
         legend: {
           position: "right",
-          labels: {
-            color: "#a0a0a0",
-            boxWidth: 10,
-            padding: 8,
-          },
+          labels: { color: "#a0a0a0", boxWidth: 10, padding: 8 },
         },
         title: { display: false },
       },
@@ -282,12 +256,10 @@ function initErrorStatusesChart() {
   });
 }
 
-// Horizontal Bar Chart for Most Frequent Endpoints
 function initFrequentEndpointsChart() {
   const ctx = document
     .getElementById("frequentEndpointsChart")
     .getContext("2d");
-
   new Chart(ctx, {
     type: "bar",
     data: {
@@ -303,29 +275,22 @@ function initFrequentEndpointsChart() {
       ],
     },
     options: {
-      indexAxis: "y", // Makes it horizontal
+      indexAxis: "y",
       responsive: true,
       maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        title: { display: false },
-      },
+      plugins: { legend: { display: false }, title: { display: false } },
       scales: {
         x: {
           grid: { color: "rgba(255, 255, 255, 0.1)" },
           ticks: { color: "#a0a0a0", display: false },
         },
-        y: {
-          grid: { display: false },
-          ticks: { color: "#a0a0a0" },
-        },
+        y: { grid: { display: false }, ticks: { color: "#a0a0a0" } },
       },
     },
   });
 }
 
-// --- 📋 Table Population Function ---
-
+// --- Table Population ---
 function populateLogTable() {
   const logs = generateMockLogData(15);
   const tableBody = document.querySelector("#recentRequestsTable tbody");
@@ -333,38 +298,23 @@ function populateLogTable() {
 
   logs.forEach((log) => {
     const row = tableBody.insertRow();
-
-    // 1. Time (Format to HH:MM:SS)
-    const time = new Date(log.timestamp).toLocaleTimeString("en-US", {
-      hour12: false,
-    });
-    row.insertCell().textContent = time;
-
-    // 2. Method (Styled Badge)
+    row.insertCell().textContent = new Date(log.timestamp).toLocaleTimeString(
+      "en-US",
+      { hour12: false }
+    );
     const methodCell = row.insertCell();
     methodCell.innerHTML = `<span class="method-badge method-${log.method}">${log.method}</span>`;
-
-    // 3. Path
     row.insertCell().textContent = log.path;
-
-    // 4. Status (Styled Badge)
     const statusCell = row.insertCell();
-    // Determine status class (2xx, 4xx, 5xx)
     const statusGroup = Math.floor(log.status / 100) * 100;
     statusCell.innerHTML = `<span class="status-badge status-${statusGroup}">${log.status}</span>`;
-
-    // 5. Duration
     row.insertCell().textContent = `${log.duration}ms`;
-
-    // 6. IP Address
     row.insertCell().textContent = log.ipAddress;
   });
 }
 
-// --- 🚀 Execution ---
-
+// --- Execute ---
 document.addEventListener("DOMContentLoaded", () => {
-  // Row 1: KPI Sparklines
   createSparkline(
     "uptimeSparkline",
     generateMockSparklineData(99.8, 0.2),
@@ -381,11 +331,8 @@ document.addEventListener("DOMContentLoaded", () => {
     "#ff6e6e"
   );
 
-  // Row 2: Charts
   initRequestsPerMinuteChart();
   initErrorStatusesChart();
   initFrequentEndpointsChart();
-
-  // Row 3: Log Table
   populateLogTable();
 });
