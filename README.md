@@ -14,11 +14,7 @@
   <a href="#development">Development</a>
 </p>
 
-<div align="center">
-  <a >
-    <img src="./src/page/assets/img/sampol.png" alt="logo" width="250" height="250" />
-  </a>
-</div>
+<img src="./src/page/assets/img/sampol.png" alt="" align="center" width="auto" height="auto">
 
 ---
 
