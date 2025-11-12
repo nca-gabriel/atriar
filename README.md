@@ -14,8 +14,6 @@
   <a href="#development">Development</a>
 </p>
 
-<img src="./src/page/assets/img/sampol.png" alt="" align="center" width="auto" height="auto">
-
 ---
 
 ## Project Description
