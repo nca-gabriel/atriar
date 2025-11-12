@@ -1,19 +1,24 @@
-# **Atriar Request Logger and Dashboard**
+<div align="center">
+  <a>
+    <img src="./src/page/assets/img/full-logo.png" alt="logo" width="250" height="250" />
+  </a>
+  <h1>Atriar</h1>
+</div>
 
 # **Features**
 
 - **Automatic request logging**: method, path, status, duration, timestamp, IP, user agent, size, error
-- **Real-time dashboard** served locally
-- **Charts**: traffic over time, status distribution
+- **Dashboard** served locally
+- **Charts.js**: traffic over time, status distribution
 - **Performance insights**: slowest and most error-prone endpoints
-- **Search + filters** in the logs table
 - **Local-first**: no accounts or cloud needed
 - Works in **JavaScript + TypeScript**
-- Multiple storage options (SQLite, MongoDB, PostgreSQL)
+- Supports **MongoDB** and **PostgreSQL**
 
 ---
 
 ## **Installation**
+
 ```bash
 npm install atriar
 # or
@@ -21,9 +26,10 @@ yarn add atriar
 ```
 
 ## **Usage**
+
 ```typescript
 import express from "express";
-import { atriar } from "atriar";
+const atriar = require("atriar").default;
 
 const app = express();
 
@@ -39,10 +45,12 @@ app.listen(3000, () => {
   console.log("Server running at http://localhost:3000");
 });
 ```
+
 Once started, open your browser at http://localhost:3000/atriar
- to view the dashboard.
+to view the dashboard.
 
 ## **Tech Stack**
+
 TypeScript
 
 Express Middleware
@@ -52,6 +60,7 @@ Chart.js
 Node.js / npm
 
 ## **Development**
+
 ```bash
 git clone https://github.com/yourusername/atriar.git
 cd atriar
@@ -59,15 +68,7 @@ npm install
 npm run dev
 ```
 
-
-
 ## **Links**
-- **npm:** [https://www.npmjs.com/package/atriar](https://www.npmjs.com/package/atriar)  
+
+- **npm:** [https://www.npmjs.com/package/atriar](https://www.npmjs.com/package/atriar)
 - **GitHub:** [https://github.com/yourusername/atriar](https://github.com/nca-gabriel/atriar)
-
-
-
-
-
-
- 

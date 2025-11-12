@@ -1,23 +1,35 @@
 {
   "name": "atriar",
-  "version": "0.0.1",
-  "main": "dist/middleware/logger.js",
-  "types": "dist/types/index.d.ts",
+  "version": "0.1.1",
+  "main": "dist/middleware/atriar.js",
+  "types": "dist/types/logger.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "tsc && npx cpy \"src/page/**/*\" dist/page",
-    "dev": "nodemon --watch src --ext ts --exec \"ts-node src/index.ts\""
+    "dev": "nodemon --watch src --ext ts --exec \"ts-node src/index.ts\"",
+    "test": "jest --watchAll --verbose"
   },
-  "keywords": [],
+  "keywords": [
+    "express",
+    "middleware",
+    "logging",
+    "dashboard",
+    "typescript"
+  ],
   "author": "ncagabriel",
   "license": "MIT",
-  "description": "",
+  "description": "Plug-and-play Express middleware to log and visualize API requests with built-in dashboard",
   "dependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/supertest": "^6.0.3",
     "express": "^5.1.0",
+    "jest": "^30.2.0",
     "mongodb": "^6.20.0",
-    "pg": "^8.16.3"
+    "pg": "^8.16.3",
+    "supertest": "^7.1.4",
+    "ts-jest": "^29.4.5"
   },
   "devDependencies": {
     "@types/node": "^24.9.1",
